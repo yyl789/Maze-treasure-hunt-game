@@ -21,7 +21,7 @@ pip install -r requirements.txt
 3. **解决方案**: 调整奖励值、增加步数惩罚
 
 
-https://github.com/user-attachments/assets/465cc7c9-b88e-464e-b0ac-b35cdfe38547
+![第一次训练](https://github.com/user-attachments/assets/ca776690-97cf-4a03-ae6b-4db99e4324e7)
 
 
 ## 修改奖励函数
