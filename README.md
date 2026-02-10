@@ -19,7 +19,9 @@ pip install -r requirements.txt
 1. **发现问题**: 智能体陷入局部最优
 2. **原因分析**: 奖励函数设计问题
 3. **解决方案**: 调整奖励值、增加步数惩罚
+
 ![IMG_4666](https://github.com/user-attachments/assets/2f3669bb-3626-41bb-a536-ff2d4cace19d)
+
 
 ## 修改奖励函数
 ```bash
