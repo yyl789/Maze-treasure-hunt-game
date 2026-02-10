@@ -81,5 +81,39 @@ if choice == '3':
 3. 针对不同难度调整不同参数
 
 ## 第二次训练10*10
-智能体直接去终点
+1. **初始来回走动**: 不够高效
+2. **完全忽略黄色奖励点**: 过于"功利"，只追求终点
+
+![10*10第二次训练](https://github.com/user-attachments/assets/0bef063e-86a1-4922-99c0-b1a8d5752130)
+
+## 修改奖励函数+修改训练参数
+```bash
+elif cell_value == self.BONUS:  # 吃到奖励点
+    reward = 8  # 从3提高到8，鼓励顺路获取
+    self.maze[new_row, new_col] = self.EMPTY  # 奖励点消失
+    done = False
+else:  # 普通空地
+    reward = -1  # 从-2降低到-1，降低步数惩罚
+    done = False
+```
+```bash
+agent = QLearningAgent(
+    env=env,
+    learning_rate=0.1,
+    discount_factor=0.9,  # 改回0.9
+    exploration_rate=1.0,
+    exploration_decay=0.997,  # 适当调整
+    min_exploration=0.02  # 稍微提高最小探索率
+)
+```
+1.会顺路吃奖励点: 奖励点价值8足够吸引，但步数惩罚-1防止过度绕路
+2.更智能的探索
+
+## 第三次训练10*10
+智能体吃了奖励点，并且去到了终点
+
+![10*10第三次训练](https://github.com/user-attachments/assets/0b2b44f2-2ad1-4d86-87c9-11a11b017ea2)
+
+
+
 
