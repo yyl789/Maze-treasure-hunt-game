@@ -47,18 +47,19 @@ else:  # 普通空地
 
 ## 第一次训练10*10
 1. **发现问题**: 智能体陷入局部最优
-2. **原因分析**: 奖励函数设计问题
-3. **解决方案**: 调整奖励值、增加步数惩罚
+2. **原因分析**: 训练不够充分，奖励函数仍需调整，探索不够深入
+3. **解决方案**: 调整奖励值、增加步数惩罚，修改训练参数
 
 ![10*10第一次训练](https://github.com/user-attachments/assets/15c6d808-f5db-4f38-8fd8-aaf3391789c2)
 
 ## 修改奖励函数
 ```bash
 elif cell_value == self.BONUS:  # 吃到奖励点
-    reward = 5  # 从20降低到5
+    reward = 5  # 改为 3
+    self.maze[new_row, new_col] = self.EMPTY  # 添加这行，让奖励点消失
     done = False
 else:  # 普通空地
-    reward = -1  # 从-0.1增加到-1，鼓励尽快找到目标
+    reward = -1  # 改为 -2
     done = False
 ```
 1. 降低黄色点价值：从20降到5，减少诱惑
