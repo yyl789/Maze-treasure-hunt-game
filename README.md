@@ -13,3 +13,9 @@ This project is a maze treasure hunt game based on the Q-learning algorithm. The
 ## Install Dependencies
 ```bash
 pip install -r requirements.txt
+```
+
+## 第一次训练
+1. **发现问题**: 智能体陷入局部最优
+2. **原因分析**: 奖励函数设计问题
+3. **解决方案**: 调整奖励值、增加步数惩罚
