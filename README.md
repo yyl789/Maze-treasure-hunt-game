@@ -20,7 +20,8 @@ pip install -r requirements.txt
 2. **原因分析**: 奖励函数设计问题
 3. **解决方案**: 调整奖励值、增加步数惩罚
 
-![IMG_4666](https://github.com/user-attachments/assets/2f3669bb-3626-41bb-a536-ff2d4cace19d)
+
+https://github.com/user-attachments/assets/465cc7c9-b88e-464e-b0ac-b35cdfe38547
 
 
 ## 修改奖励函数
