@@ -40,5 +40,7 @@ else:  # 普通空地
 ## 第二次训练
 智能体直接去终点
 
+![第二次训练](https://github.com/user-attachments/assets/545526f5-cb68-474d-bc92-59234b89ab1b)
+
 
 
