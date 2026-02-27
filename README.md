@@ -32,7 +32,7 @@ pip install -r requirements.txt
 elif cell_value == self.BONUS: 
     reward = 5  # Reduced from 20 to 5
     done = False
-else:  # 普通空地
+else:  
     reward = -1  # Increase from -0.1 to -1
     done = False
 ```
