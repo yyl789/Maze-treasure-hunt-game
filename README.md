@@ -29,11 +29,11 @@ pip install -r requirements.txt
 
 ## 修改奖励函数
 ```bash
-elif cell_value == self.BONUS:  # 吃到奖励点
-    reward = 5  # 从20降低到5
+elif cell_value == self.BONUS: 
+    reward = 5  # Reduced from 20 to 5
     done = False
 else:  # 普通空地
-    reward = -1  # 从-0.1增加到-1，鼓励尽快找到目标
+    reward = -1  # Increase from -0.1 to -1
     done = False
 ```
 1. 降低黄色点价值：从20降到5，减少诱惑
