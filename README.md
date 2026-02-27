@@ -30,7 +30,7 @@ pip install -r requirements.txt
 ## 修改奖励函数
 ```bash
 elif cell_value == self.BONUS: 
-    reward = 5  # Reduced from 20 to 5
+    reward = 5  # Reduce from 20 to 5
     done = False
 else:  
     reward = -1  # Increase from -0.1 to -1
@@ -88,22 +88,22 @@ if choice == '3':
 
 ## 修改奖励函数+修改训练参数
 ```bash
-elif cell_value == self.BONUS:  # 吃到奖励点
-    reward = 8  # 从3提高到8，鼓励顺路获取
-    self.maze[new_row, new_col] = self.EMPTY  # 奖励点消失
+elif cell_value == self.BONUS: 
+    reward = 8  # Increase from 3 to 8
+    self.maze[new_row, new_col] = self.EMPTY  # Bonus points disappear
     done = False
-else:  # 普通空地
-    reward = -1  # 从-2降低到-1，降低步数惩罚
+else: 
+    reward = -1  # Reduce from -2 to -1
     done = False
 ```
 ```bash
 agent = QLearningAgent(
     env=env,
     learning_rate=0.1,
-    discount_factor=0.9,  # 改回0.9
+    discount_factor=0.9,
     exploration_rate=1.0,
-    exploration_decay=0.997,  # 适当调整
-    min_exploration=0.02  # 稍微提高最小探索率
+    exploration_decay=0.997,  # Adjust appropriately
+    min_exploration=0.02  # Slightly increase the minimum exploration rate
 )
 ```
 1. 会顺路吃奖励点: 奖励点价值8足够吸引，但步数惩罚-1防止过度绕路
