@@ -15,19 +15,19 @@ This project is a maze treasure hunt game based on the Q-learning algorithm. The
 pip install -r requirements.txt
 ```
 
-## 第一次训练5*5
-智能体直接去终点
+## First training 5*5
+The agent goes directly to the finish line.
 
-![5*5第一次训练](https://github.com/user-attachments/assets/67d338f1-f37e-4f5d-8047-76934bec2776)
+![First training 5*5](https://github.com/user-attachments/assets/67d338f1-f37e-4f5d-8047-76934bec2776)
 
-## 第一次训练8*8
-1. **发现问题**: 智能体陷入局部最优
-2. **原因分析**: 奖励函数设计问题
-3. **解决方案**: 调整奖励值、增加步数惩罚
+## First training 8*8
+1. **Problem**: Agent stuck in local optimum.
+2. **Cause**: Poor reward function design.
+3. **Solution**: Adjust reward values, add step penalty.
 
-![第一次训练](https://github.com/user-attachments/assets/ca776690-97cf-4a03-ae6b-4db99e4324e7)
+![First training 8*8](https://github.com/user-attachments/assets/ca776690-97cf-4a03-ae6b-4db99e4324e7)
 
-## 修改奖励函数
+## Modify the reward function
 ```bash
 elif cell_value == self.BONUS: 
     reward = 5  # Reduce from 20 to 5
@@ -36,57 +36,57 @@ else:
     reward = -1  # Increase from -0.1 to -1
     done = False
 ```
-1. 降低黄色点价值：从20降到5，减少诱惑
-2. 增加步数惩罚：从-0.1到-1，鼓励尽快完成游戏
-3. 使终点相对价值更高
+1. Reduce yellow point value: from 20 to 5, reduce temptation.  
+2. Increase step penalty: from -0.1 to -1, encourage faster completion.  
+3. Make the goal relatively more valuable.
 
-## 第二次训练8*8
-智能体直接去终点
+## Second training 8*8
+The agent goes directly to the finish line
 
-![第二次训练](https://github.com/user-attachments/assets/545526f5-cb68-474d-bc92-59234b89ab1b)
+![Second training 8*8](https://github.com/user-attachments/assets/545526f5-cb68-474d-bc92-59234b89ab1b)
 
-## 第一次训练10*10
-1. **发现问题**: 智能体在困难迷宫中表现不佳
-2. **原因分析**: 状态空间大，训练不足，奖励函数仍需优化
-3. **解决方案**: 增加训练回合，调整奖励函数，实现奖励点消失
+## First training 10*10
+1. **Problem**: Agent performs poorly in difficult mazes.  
+2. **Cause**: Large state space, insufficient training, reward function needs improvement.  
+3. **Solution**: Increase training episodes, adjust reward function, make reward points disappear.
    
-![10*10第一次训练](https://github.com/user-attachments/assets/15c6d808-f5db-4f38-8fd8-aaf3391789c2)
+![First training 10*10](https://github.com/user-attachments/assets/15c6d808-f5db-4f38-8fd8-aaf3391789c2)
 
-## 修改奖励函数+修改训练参数
+## Modify reward function and training parameters
 ```bash
-elif cell_value == self.BONUS:  # 吃到奖励点
-    reward = 5  # 改为 3
-    self.maze[new_row, new_col] = self.EMPTY  # 添加这行，让奖励点消失
+elif cell_value == self.BONUS: 
+    reward = 3  # Reduce from 5 to 3
+    self.maze[new_row, new_col] = self.EMPTY  # Reward points disappear
     done = False
-else:  # 普通空地
-    reward = -1  # 改为 -2
+else: 
+    reward = -2  # Reduce from -1 to -2
     done = False
 ```
 ```bash
 agent = QLearningAgent(
     env=env,
     learning_rate=0.1,
-    discount_factor=0.85,  # 改为0.85
+    discount_factor=0.85,  # Change to 0.85
     exploration_rate=1.0,
-    exploration_decay=0.998,  # 改为0.998
-    min_exploration=0.005  # 改为0.005
+    exploration_decay=0.998,  # Change to 0.998
+    min_exploration=0.005  # Change to 0.005
 )
-# 修改训练回合数：
+# Modify the number of training rounds
 if choice == '3':
     env_type = 'hard'
-    episodes = 5000  # 改为5000
+    episodes = 5000  # Change to 5000
 ```
-1. 防止无限循环：从5降到3，奖励点消失机制
-2. 增加步数惩罚：从-1到-2，鼓励尽快完成游戏
-3. 针对不同难度调整不同参数
+1. Prevent infinite loops: from 5 to 3, reward point disappearance mechanism.  
+2. Increase step penalty: from -1 to -2, encourage faster completion.  
+3. Adjust parameters for different difficulty levels.
 
-## 第二次训练10*10
-1. **初始来回走动**: 不够高效
-2. **完全忽略黄色奖励点**: 过于"功利"，只追求终点
+## Second training 10*10
+1. **Initial back-and-forth movement**: inefficient.  
+2. **Complete disregard for yellow reward points**: too "utilitarian," focusing only on the goal.
 
-![10*10第二次训练](https://github.com/user-attachments/assets/0bef063e-86a1-4922-99c0-b1a8d5752130)
+![Second training 10*10](https://github.com/user-attachments/assets/0bef063e-86a1-4922-99c0-b1a8d5752130)
 
-## 修改奖励函数+修改训练参数
+## Modify reward function and training parameters
 ```bash
 elif cell_value == self.BONUS: 
     reward = 8  # Increase from 3 to 8
@@ -106,13 +106,13 @@ agent = QLearningAgent(
     min_exploration=0.02  # Slightly increase the minimum exploration rate
 )
 ```
-1. 会顺路吃奖励点: 奖励点价值8足够吸引，但步数惩罚-1防止过度绕路
-2. 更智能的探索
+1. Collects reward points along the way: reward value of 8 is attractive enough, but step penalty of -1 prevents excessive detours  
+2. More intelligent exploration
 
-## 第三次训练10*10
-智能体吃了奖励点，并且去到了终点
+## Third training 10*10
+The agent ate the reward point and went to the finish line.
 
-![10*10第三次训练](https://github.com/user-attachments/assets/0b2b44f2-2ad1-4d86-87c9-11a11b017ea2)
+![Third training 10*10](https://github.com/user-attachments/assets/0b2b44f2-2ad1-4d86-87c9-11a11b017ea2)
 
 
 
