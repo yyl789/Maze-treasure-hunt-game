@@ -17,8 +17,8 @@ def train_agent(env_type='simple', episodes=1000):
         learning_rate=0.1,
         discount_factor=0.9,
         exploration_rate=1.0,
-        exploration_decay=0.995,
-        min_exploration=0.01
+        exploration_decay=0.997,
+        min_exploration=0.02
     )
     
     # Training parameters
@@ -148,7 +148,7 @@ if __name__ == "__main__":
         episodes = 1000
     elif choice == '3':
         env_type = 'hard'
-        episodes = 2000
+        episodes = 5000
     else:
         print("Invalid choice, default to simple maze")
         env_type = 'simple'

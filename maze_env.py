@@ -132,10 +132,11 @@ class MazeEnv:
                 reward = -50
                 done = False
             elif cell_value == self.BONUS:  # collected bonus
-                reward = 20
+                reward = 8
+                self.maze[new_row, new_col] = self.EMPTY  # bonus disappears
                 done = False
-            else:  # normal empty cell
-                reward = -0.1  # small step penalty to encourage shorter paths
+            else:  
+                reward = -1  # small step penalty to encourage shorter paths
                 done = False
         
         return self.get_state(), reward, done, {}
